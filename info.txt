@@ -1,0 +1,30 @@
+https://github.com/assaultcube/AC/releases
+
+pointer hex 026DA308
+
+base
+00509B74
+0050F4F4
+0051E20C
+
+base + F8 = health
+
+base + 40 = yaw
+base + 44 = pitch
+base + 48 = z
+
+base + 34 = zPos
+base + 38 = xPos
+base + 3C = yPos
+
+upper = health
+upper + 50 = rifle clip ammo
+upper + 28 = rifle total ammo
+
+upper + 44 = pistol clip ammo
+upper + 1C = pistol total ammo
+
+upper + 60 = grenades
+upper + (0)4 = armor
+
+upper + 12D = nickname

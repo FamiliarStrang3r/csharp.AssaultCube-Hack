@@ -1,0 +1,9 @@
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\bin\Debug\AssaultCubeHack.exe.config
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\bin\Debug\AssaultCubeHack.exe
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\bin\Debug\AssaultCubeHack.pdb
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\bin\Debug\VAMemory.dll
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.csprojAssemblyReference.cache
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.csproj.CoreCompileInputs.cache
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.csproj.CopyComplete
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.exe
+D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.pdb

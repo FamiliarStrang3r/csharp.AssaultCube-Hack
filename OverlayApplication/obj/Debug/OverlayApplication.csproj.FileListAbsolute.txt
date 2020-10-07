@@ -1,0 +1,7 @@
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\OverlayApplication.exe.config
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\OverlayApplication.exe
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\OverlayApplication.pdb
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.csprojAssemblyReference.cache
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.csproj.CoreCompileInputs.cache
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.exe
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.pdb

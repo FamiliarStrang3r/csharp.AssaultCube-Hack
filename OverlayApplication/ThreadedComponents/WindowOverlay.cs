@@ -7,7 +7,7 @@ namespace OverlayApplication
 {
     public class WindowOverlay : ThreadedComponent
     {
-        Color c = Color.Gray;
+        //Color c = Color.Gray;
 
         protected override int ThreadTimeout { get; set; } = 500;
 
@@ -90,7 +90,7 @@ namespace OverlayApplication
             System.Windows.Application.Current.Dispatcher.Invoke(() =>
             {
                 // TODO: temporary
-                Window.BackColor = c; 
+                //Window.BackColor = c; 
 
                 if (Window.Location != windowRectangleClient.Location || Window.Size != windowRectangleClient.Size)
                 {

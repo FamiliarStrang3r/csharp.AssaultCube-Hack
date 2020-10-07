@@ -7,3 +7,4 @@ D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.csproj.
 D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.csproj.CopyComplete
 D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.exe
 D:\VS_Projects\AssaultCubeHack\AssaultCubeHack\obj\Debug\AssaultCubeHack.pdb
+D:\VS_Projects\csharp.AssaultCube-Hack\AssaultCubeHack\bin\Debug\AssaultCubeHack.exe

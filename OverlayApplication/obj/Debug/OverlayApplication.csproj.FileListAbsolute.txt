@@ -5,3 +5,7 @@ D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayAppli
 D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.csproj.CoreCompileInputs.cache
 D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.exe
 D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.pdb
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\Microsoft.DirectX.Direct3D.dll
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\Microsoft.DirectX.Direct3DX.dll
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\bin\Debug\Microsoft.DirectX.dll
+D:\VS_Projects\csharp.AssaultCube-Hack\OverlayApplication\obj\Debug\OverlayApplication.csproj.CopyComplete

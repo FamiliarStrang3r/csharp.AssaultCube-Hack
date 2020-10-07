@@ -40,6 +40,7 @@ namespace OverlayApplication
             }
 
             string text = IsValid ? $"0x{(int)Process.Handle:X8} {WindowRectangleClient.X} {WindowRectangleClient.Y} {WindowRectangleClient.Width} {WindowRectangleClient.Height}" : "Game process invalid";
+            text = IsValid ? WindowRectangleClient.ToString() : "Invalid";
             Console.WriteLine(text);
         }
 

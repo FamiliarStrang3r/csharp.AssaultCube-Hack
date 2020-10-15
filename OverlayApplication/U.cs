@@ -62,5 +62,22 @@ namespace OverlayApplication
             Kernel32.ReadProcessMemory(hProcess, lpBaseAddress, buffer, size, out var lpNumberOfBytesRead);
             return lpNumberOfBytesRead == size ? (T)buffer : default;
         }
+
+        public static bool Write<T>(this Process process, IntPtr lpBaseAddress, T value) where T : unmanaged
+        {
+            //return Write<T>(process.Handle, lpBaseAddress);
+
+            var buffer = new T[Marshal.SizeOf<T>()];
+            buffer[0] = value;
+            return Kernel32.WriteProcessMemory(process.Handle, lpBaseAddress, buffer, Marshal.SizeOf<T>(), out var bytesread);
+        }
+
+        //public static bool Write<T>(IntPtr hProcess, IntPtr lpBaseAddress, T value)
+        //{
+        //    //var size = Marshal.SizeOf<T>();
+        //    //var buffer = (object)default(T);
+        //    Kernel32.WriteProcessMemory(hProcess, lpBaseAddress, buffer, size, out var lpNumberOfBytesWritten);
+        //    return lpNumberOfBytesWritten == size;
+        //}
     }
 }

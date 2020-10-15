@@ -109,7 +109,19 @@ namespace OverlayApplication
             //DrawWindowBorder();
             //DrawFps();
 
-            DrawEntities();
+            int w = GameProcess.WindowRectangleClient.Width;
+
+            var gameMode = GameData.IsDM ? "Deathmatch" : "Team Deathmatch";
+            FontVerdana.DrawText(default, gameMode, (int)(w * 0.4), 0 + 10, Color.White);
+
+            try
+            {
+                DrawEntities();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
         }
 
         private void DrawFps()
@@ -136,6 +148,9 @@ namespace OverlayApplication
 
         private void DrawEntities()
         {
+            Color enemyColor = Color.White;
+            Color teamColor = GameData.IsDM ? enemyColor : Color.Green;
+
             int w = GameProcess.WindowRectangleClient.Width;
             int h = GameProcess.WindowRectangleClient.Height;
 
@@ -144,6 +159,8 @@ namespace OverlayApplication
                 var entity = GameData.Bots[i];
 
                 if (entity.Health <= 0) continue;
+
+                Color color = entity.Team == GameData.Player.Team ? teamColor : enemyColor;
 
                 if (GameData.ViewMatrix.WorldToScreen(entity.HeadPosition, w, h, out var headPosition))
                 {
@@ -161,17 +178,17 @@ namespace OverlayApplication
                             new Vector3(footPosition.X + width, footPosition.Y, 0),
                             new Vector3(footPosition.X - width, footPosition.Y, 0),
                             new Vector3(headPosition.X - width, headPosition.Y - offset, 0),
-                        }, Color.Red);
+                        }, color);
                     }
 
                     string upperText = $"{entity.Health} : {entity.Armor}";
-                    FontVerdana.DrawText(default, upperText, (int)headPosition.X, (int)headPosition.Y - offset * 3, Color.Red);
+                    FontVerdana.DrawText(default, upperText, (int)headPosition.X, (int)headPosition.Y - offset * 3, color);
 
                     Device.DrawPolyline(new Vector3[]
                     {
                         new Vector3(w * 0.5f, h, 0),
                         footPosition
-                    }, Color.Red);
+                    }, color);
                 }
             }
         }

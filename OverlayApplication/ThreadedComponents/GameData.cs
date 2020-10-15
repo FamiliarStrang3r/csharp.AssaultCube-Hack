@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-//using Microsoft.DirectX;
+using System.Linq;
+using System.Windows.Forms;
+using Microsoft.DirectX;
 
 //https://vk.com/topic-9618_21661347?offset=340
 //Чтобы её избежать в студии нажмите Ctrl+Alt+E.
@@ -15,15 +17,20 @@ namespace OverlayApplication
     {
         protected override string ThreadName => nameof(GameData);
 
-        protected override int ThreadFrameSleep { get; set; } = 50;
+        protected override int ThreadFrameSleep { get; set; } = 20;
 
         private GameProcess GameProcess { get; set; }
 
         //
         public Matrix ViewMatrix { get; private set; }
-        private Entity player = new Entity(Offsets.LocalPlayer);
+        public Entity Player { get; private set; } = new Entity(Offsets.LocalPlayer);
         public List<Entity> Bots { get; private set; } = new List<Entity>();
         //
+
+        public bool IsDM { get; private set; } = false;
+
+        private Vector3 BasePosition;
+        private Vector3 FlagPosition;
 
         public GameData(GameProcess gameProcess)
         {
@@ -51,7 +58,7 @@ namespace OverlayApplication
         {
             ViewMatrix = U.Read<Matrix>(GameProcess.Process.Handle, (IntPtr)Offsets.ViewMatrix);
 
-            player.Update(GameProcess);
+            Player.Update(GameProcess);
 
             int count = GameProcess.Process.Read<int>((IntPtr)Offsets.PlayersCount);
             int entityList = GameProcess.Process.Read<int>((IntPtr)Offsets.EntityList);
@@ -67,7 +74,98 @@ namespace OverlayApplication
                 //Console.WriteLine(e.ToString());
             }
 
-            //Console.WriteLine();
+            //GameProcess.Process.Write((IntPtr)Offsets.LocalPlayer + 0x150, 100);
+            //int admin = GameProcess.Process.Read<int>((IntPtr)Offsets.LocalPlayer + 0x150);// + 0x220);
+            //Console.WriteLine(admin);
+
+            Entity[] alive = null;
+
+            if (IsDM)
+            {
+                alive = Bots.Where(e => e.Health > 0).ToArray();
+            }
+            else
+            {
+                alive = Bots.Where(e => e.Health > 0 && e.Team != Player.Team).ToArray();
+            }
+
+            var target = GetClosestEntity(alive);
+
+            bool holdingDown = User32.GetAsyncKeyState(Keys.RButton) != 0;
+
+            if (target != null && holdingDown)
+            {
+                Player.AimTowards(GameProcess, target);
+                //Console.WriteLine(Player.Pitch + " / " + Player.Yaw);
+            }
+
+            bool clicked = User32.GetAsyncKeyState(Keys.Q) != 0;
+
+            if (clicked)
+            {
+                IsDM = !IsDM;
+                Console.WriteLine("DM: " + IsDM);
+                System.Threading.Thread.Sleep(100);
+            }
+
+            Teleport();
+        }
+
+        private void Teleport()
+        {
+            if (User32.GetAsyncKeyState(Keys.NumPad1) != 0)
+            {
+                BasePosition = Player.FootPosition;
+            }
+            else if (User32.GetAsyncKeyState(Keys.NumPad2) != 0)
+            {
+                Player.SetPosition(GameProcess, BasePosition + new Vector3(0, 0, 1));
+            }
+
+            if (User32.GetAsyncKeyState(Keys.NumPad4) != 0)
+            {
+                FlagPosition = Player.FootPosition;
+            }
+            else if (User32.GetAsyncKeyState(Keys.NumPad5) != 0)
+            {
+                Player.SetPosition(GameProcess, FlagPosition + new Vector3(0, 0, 1));
+            }
+        }
+
+        private Entity GetClosestEntity(Entity[] alive)
+        {
+            if (alive.Length == 0)
+                return null;
+
+            Entity candidate = alive[0];
+
+            if (alive.Length == 1)
+                return candidate;
+
+            for (int i = 1, length = alive.Length; i < length; i++)
+            {
+                var e = alive[i];
+
+
+                //float distance = Vectors.Vector3.Distance(Player.HeadPosition, e.HeadPosition);
+
+                //if (distance < Vectors.Vector3.Distance(Player.HeadPosition, candidate.HeadPosition))
+                //{
+                //    candidate = e;
+                //}
+                var dir = Player.HeadPosition - e.HeadPosition;
+                var dir2 = Player.HeadPosition - candidate.HeadPosition;
+
+                float distance = dir.Length();
+                float distance2 = dir2.Length();
+
+                if (distance < distance2)
+                {
+                    candidate = e;
+                }
+            }
+
+            return candidate;
         }
 
         private void ReadValues()

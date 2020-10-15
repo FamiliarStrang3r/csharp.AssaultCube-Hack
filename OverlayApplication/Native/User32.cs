@@ -30,5 +30,8 @@ namespace OverlayApplication
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
+
+        [DllImport("user32.dll")]
+        public static extern int GetAsyncKeyState(System.Windows.Forms.Keys key);
     }
 }
